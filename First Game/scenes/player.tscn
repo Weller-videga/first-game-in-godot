@@ -1,7 +1,23 @@
-[gd_scene load_steps=26 format=3 uid="uid://dqnaqj8yb6hwd"]
+[gd_scene load_steps=30 format=3 uid="uid://dqnaqj8yb6hwd"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ofpvf"]
 [ext_resource type="Texture2D" uid="uid://b8cmjj8vq3r8d" path="res://assets/sprites/knight.png" id="1_p3dy5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wwx3"]
+atlas = ExtResource("1_p3dy5")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvcw5"]
+atlas = ExtResource("1_p3dy5")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gniid"]
+atlas = ExtResource("1_p3dy5")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7xr6"]
+atlas = ExtResource("1_p3dy5")
+region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq0sc"]
 atlas = ExtResource("1_p3dy5")
@@ -91,6 +107,23 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0wwx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvcw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gniid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7xr6")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_eq0sc")
 }, {
 "duration": 1.0,
@@ -173,15 +206,22 @@ radius = 5.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
-collision_layer = 2
+collision_layer = 3
+collision_mask = 3
+up_direction = Vector2(0, 1)
 script = ExtResource("1_ofpvf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_81gkq")
-animation = &"jump"
+animation = &"Death"
 autoplay = "idle"
+frame_progress = 0.27325
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_bvcm0")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
