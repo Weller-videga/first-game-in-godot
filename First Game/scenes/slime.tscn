@@ -1,39 +1,66 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2w2i5h0lhc6l"]
+[gd_scene load_steps=14 format=3 uid="uid://d2w2i5h0lhc6l"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_fxbww"]
 [ext_resource type="Texture2D" uid="uid://bl53gpvg5mh1y" path="res://assets/sprites/slime_green.png" id="1_nuk1g"]
+[ext_resource type="Texture2D" uid="uid://cqqfoa5x244vc" path="res://assets/Ninja Adventure - Asset Pack/Actor/Boss/DemonCyclop/Walk.png" id="2_7b5wb"]
 [ext_resource type="PackedScene" uid="uid://dtrbka1ef726o" path="res://scenes/killzone.tscn" id="2_aiwyj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyt03"]
+atlas = ExtResource("2_7b5wb")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38vyl"]
+atlas = ExtResource("2_7b5wb")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dygpj"]
+atlas = ExtResource("2_7b5wb")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvidf"]
+atlas = ExtResource("2_7b5wb")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymm4r"]
+atlas = ExtResource("2_7b5wb")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixcar"]
+atlas = ExtResource("2_7b5wb")
+region = Rect2(250, 0, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ayoyu"]
 atlas = ExtResource("1_nuk1g")
 region = Rect2(0, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ponx"]
-atlas = ExtResource("1_nuk1g")
-region = Rect2(24, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x57lo"]
-atlas = ExtResource("1_nuk1g")
-region = Rect2(48, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1a8la"]
-atlas = ExtResource("1_nuk1g")
-region = Rect2(72, 24, 24, 24)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8uf2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_oyt03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38vyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dygpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvidf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymm4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixcar")
+}],
+"loop": true,
+"name": &"Boss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ayoyu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ponx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x57lo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1a8la")
 }],
 "loop": true,
 "name": &"default",
@@ -41,7 +68,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4xjq"]
-size = Vector2(10, 14)
+size = Vector2(21, 21.5)
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_fxbww")
@@ -49,14 +76,14 @@ script = ExtResource("1_fxbww")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_a8uf2")
-autoplay = "default"
-frame = 2
-frame_progress = 0.722655
+animation = &"Boss"
+autoplay = "Boss"
+frame_progress = 0.120013
 
 [node name="Killzone" parent="." instance=ExtResource("2_aiwyj")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(0, -7)
+position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_u4xjq")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]

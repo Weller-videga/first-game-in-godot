@@ -558,10 +558,10 @@ libraries = {
 autoplay = "move"
 
 [node name="Slime" parent="." instance=ExtResource("6_l0s6b")]
-position = Vector2(529, 81)
+position = Vector2(529, 76)
 
 [node name="Slime" parent="Slime" instance=ExtResource("6_l0s6b")]
-position = Vector2(-25, -179)
+position = Vector2(-14, -176)
 
 [node name="Labels" type="Node" parent="."]
 
